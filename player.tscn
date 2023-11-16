@@ -49,9 +49,20 @@ speed = 50.0
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_eycvm")
-frame_progress = 0.786844
+frame_progress = 0.692966
 offset = Vector2(1.5, 0)
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_oi1ty")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="aim" type="Node2D" parent="."]
+
+[node name="position" type="Marker2D" parent="aim"]
+position = Vector2(6, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
