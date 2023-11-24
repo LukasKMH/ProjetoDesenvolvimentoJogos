@@ -14,6 +14,4 @@ func on_collision(collisionDetails):
 		var body = collisionDetails.get_collider()
 		if body is Enemy:
 			body.die()
-			self.queue_free()
-		#if body is Wall:
-		#	self.queue_free()
+		self.queue_free()
