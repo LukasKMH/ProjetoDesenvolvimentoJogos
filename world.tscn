@@ -1668,13 +1668,13 @@ physics_layer_1/collision_mask = 5
 sources/3 = SubResource("TileSetAtlasSource_2hcbn")
 
 [node name="world" type="Node2D"]
+modulate = Color(0.164706, 0.164706, 0.164706, 1)
 script = ExtResource("1_rxsml")
 
 [node name="Player" parent="." instance=ExtResource("1_hd50v")]
 position = Vector2(344, 224)
 
 [node name="TileMap" type="TileMap" parent="."]
-modulate = Color(0.396078, 0.396078, 0.396078, 1)
 tile_set = SubResource("TileSet_24dou")
 cell_quadrant_size = 24
 format = 2
