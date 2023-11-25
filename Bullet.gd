@@ -13,5 +13,6 @@ func on_collision(collisionDetails):
 	if collisionDetails:
 		var body = collisionDetails.get_collider()
 		if body is Enemy:
-			body.die()
+			body.get_damage()
+			body.knockback(self)
 		self.queue_free()

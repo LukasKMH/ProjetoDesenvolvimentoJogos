@@ -7,7 +7,7 @@ var enemyscene = load("res://enemies/enemy_phase_1.tscn")
 @onready var player = $Player
 
 func _ready():
-	for i in range (0,30):
+	for i in range (0,1):
 		respawn_enemy()
 	Events.enemy_died.connect(_on_enemy_died)
 

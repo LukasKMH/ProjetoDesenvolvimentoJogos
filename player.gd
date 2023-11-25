@@ -1,19 +1,20 @@
 extends CharacterBody2D
 class_name Player
 
-@export var speed = 30.0
-
 @onready var sprite:= $sprite
-@onready var timer:= $Timer
+@onready var shoot_timer:= $ShootTimer
+@onready var get_damage_timer:= $GetDamageTimer
 @onready var aim:= $aim
 
 const BULLET = preload("res://bullet.tscn") 
 
+@export var speed = 30.0
+var life = 3
 var dead = false
 
 func _ready():
 	sprite.play()
-	timer.start()
+	shoot_timer.start()
 
 func _physics_process(delta):
 	if dead:
@@ -46,12 +47,23 @@ func shoot():
 func _on_timer_timeout():
 	shoot()
 
-func kill():
+func get_damage():
 	if dead:
 		return
-	dead = true
-	get_tree().reload_current_scene()
+	life -= 1
+	sprite.modulate = Color(1, 0, 0)
+	get_damage_timer.start()
+	
+	if life <= 0:
+		dead = true
+		get_tree().reload_current_scene()
 
+var last_body_entered
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
-		self.kill()
+		last_body_entered = body
+		self.get_damage()
+		body.knockback(self)
+
+func _on_get_damage_timer_timeout():
+	sprite.modulate = Color(1, 1, 1) #reset color
