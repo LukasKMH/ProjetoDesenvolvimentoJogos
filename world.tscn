@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://psmfu2hb5vn5"]
+[gd_scene load_steps=7 format=3 uid="uid://psmfu2hb5vn5"]
 
 [ext_resource type="Texture2D" uid="uid://b77mh1ixvh3uw" path="res://sprites/scenario 24x24.png" id="1_1c68d"]
 [ext_resource type="PackedScene" uid="uid://co6vx2qno8jub" path="res://player.tscn" id="1_hd50v"]
 [ext_resource type="Script" path="res://enemies/enemy_spawner.gd" id="1_rxsml"]
+[ext_resource type="PackedScene" uid="uid://bwe735wrco6ud" path="res://interface/heart_container.tscn" id="2_8wd7n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2hcbn"]
 texture = ExtResource("1_1c68d")
@@ -1609,6 +1610,15 @@ sources/3 = SubResource("TileSetAtlasSource_2hcbn")
 modulate = Color(0.164706, 0.164706, 0.164706, 1)
 y_sort_enabled = true
 script = ExtResource("1_rxsml")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(9, 9)
+transform = Transform2D(1, 0, 0, 1, 9, 9)
+
+[node name="HeartContainer" parent="CanvasLayer" instance=ExtResource("2_8wd7n")]
+offset_right = 194.0
+offset_bottom = 62.0
+scale = Vector2(0.2, 0.158)
 
 [node name="Player" parent="." instance=ExtResource("1_hd50v")]
 position = Vector2(344, 224)

@@ -53,15 +53,14 @@ func get_damage():
 	life -= 1
 	sprite.modulate = Color(1, 0, 0)
 	get_damage_timer.start()
+	Events.emit_signal("playerDamaged")
 	
 	if life <= 0:
 		dead = true
 		get_tree().reload_current_scene()
 
-var last_body_entered
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
-		last_body_entered = body
 		self.get_damage()
 		body.knockback(self)
 
