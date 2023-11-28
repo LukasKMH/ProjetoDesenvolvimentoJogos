@@ -1,10 +1,11 @@
 extends CharacterBody2D
 class_name Player
 
-@onready var sprite:= $sprite
-@onready var shoot_timer:= $ShootTimer
-@onready var get_damage_timer:= $GetDamageTimer
-@onready var aim:= $aim
+@onready var sprite := $sprite
+@onready var shoot_timer := $ShootTimer
+@onready var get_damage_timer := $GetDamageTimer
+@onready var aim := $aim
+@onready var light_enabled = false  # Adiciona uma variável para controlar a iluminação
 
 const BULLET = preload("res://bullet.tscn") 
 
@@ -15,6 +16,8 @@ var dead = false
 func _ready():
 	sprite.play()
 	shoot_timer.start()
+	toggle_light()	
+#	
 
 func _physics_process(delta):
 	if dead:
@@ -65,4 +68,14 @@ func _on_area_2d_body_entered(body):
 		body.knockback(self)
 
 func _on_get_damage_timer_timeout():
-	sprite.modulate = Color(1, 1, 1) #reset color
+	sprite.modulate = Color(1, 1, 1)  # Reset color
+	
+func toggle_light():
+	var light_node = $PointLight2D
+	if light_node:
+		light_node.visible = light_enabled
+		if light_enabled:
+			print("Luz Ativada")
+		else:
+			print("Luz Desativada")
+
