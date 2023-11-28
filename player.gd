@@ -5,8 +5,8 @@ class_name Player
 @onready var shoot_timer := $ShootTimer
 @onready var get_damage_timer := $GetDamageTimer
 @onready var aim := $aim
-@onready var light_enabled = false  # Adiciona uma variável para controlar a iluminação
-
+@onready var light_enabled = false 
+@onready var light_node := $PointLight2D
 const BULLET = preload("res://bullet.tscn") 
 
 @export var speed = 30.0
@@ -14,15 +14,12 @@ var life = 3
 var dead = false
 
 func _ready():
-	sprite.play()
-	shoot_timer.start()
-	toggle_light()	
-#	
+	sprite.play()  
+	check_and_execute_scenario_action()
 
 func _physics_process(delta):
 	if dead:
 		return
-	
 	walk()
 	aim.look_at(get_global_mouse_position())
 	move_and_slide()
@@ -70,12 +67,21 @@ func _on_area_2d_body_entered(body):
 func _on_get_damage_timer_timeout():
 	sprite.modulate = Color(1, 1, 1)  # Reset color
 	
-func toggle_light():
+func check_and_execute_scenario_action():
 	var light_node = $PointLight2D
-	if light_node:
-		light_node.visible = light_enabled
-		if light_enabled:
-			print("Luz Ativada")
-		else:
-			print("Luz Desativada")
+	var current_scenario = get_tree().current_scene.get_name()
+	if current_scenario.find("world_day") != -1:
+		day_action()
+	else:
+		night_action()
 
+func day_action():
+	light_enabled = false
+	light_node.visible = light_enabled
+	shoot_timer.stop()
+
+func night_action():
+	light_enabled = true
+	light_node.visible = light_enabled
+	shoot_timer.start() 
+	

@@ -93,6 +93,7 @@ position = Vector2(0.0251502, 1.96773)
 shape = SubResource("RectangleShape2D_pg0re")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 color = Color(1, 1, 0.792157, 1)
 energy = 2.0
 range_z_max = 0
