@@ -1,17 +1,21 @@
 extends Node2D
 
 var interactable = false
+var is_on_shop = false
 
 func _ready():
-	respawn()
+	#respawn()
 	self.visible = false
+	Events.close_shop.connect(_on_player_close_mage_shop)
 
 func _process(delta):
 	if !interactable:
 		return
 	
 	if Input.is_action_just_pressed("interact"):
-		print("e pressed")
+		if !is_on_shop:
+			is_on_shop = true
+			Events.emit_signal("playerInteractMage")
 
 func respawn():
 	var rand = RandomNumberGenerator.new()
@@ -33,6 +37,7 @@ func respawn():
 	self.position.y = y
 
 func _on_interact_area_body_entered(body):
+	
 	if body is Player:
 		interactable = true
 		self.visible = true
@@ -41,3 +46,6 @@ func _on_interact_area_body_exited(body):
 	if body is Player:
 		interactable = false
 		self.visible = false
+
+func _on_player_close_mage_shop():
+	is_on_shop = false

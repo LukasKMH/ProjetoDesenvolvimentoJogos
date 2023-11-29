@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://psmfu2hb5vn5"]
 
 [ext_resource type="Script" path="res://enemies/enemy_spawner.gd" id="1_wwwdp"]
-[ext_resource type="PackedScene" uid="uid://bwe735wrco6ud" path="res://interface/heart_container.tscn" id="2_7pyjf"]
+[ext_resource type="PackedScene" uid="uid://bwe735wrco6ud" path="res://UI/heart_container.tscn" id="2_7pyjf"]
 [ext_resource type="PackedScene" uid="uid://co6vx2qno8jub" path="res://player.tscn" id="3_75t28"]
 [ext_resource type="Texture2D" uid="uid://b77mh1ixvh3uw" path="res://sprites/scenario 24x24.png" id="4_wdy6h"]
 

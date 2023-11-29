@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwe735wrco6ud"]
 
-[ext_resource type="Script" path="res://interface/heart_container.gd" id="1_i6ac7"]
+[ext_resource type="Script" path="res://UI/heart_container.gd" id="1_i6ac7"]
 
 [node name="HeartContainer" type="HBoxContainer"]
 scale = Vector2(1.28, 1.00571)

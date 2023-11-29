@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://br2wtk5y4714j"]
 
-[ext_resource type="PackedScene" uid="uid://bwe735wrco6ud" path="res://interface/heart_container.tscn" id="1_qxxcj"]
+[ext_resource type="PackedScene" uid="uid://bwe735wrco6ud" path="res://UI/heart_container.tscn" id="1_qxxcj"]
 [ext_resource type="PackedScene" uid="uid://co6vx2qno8jub" path="res://player.tscn" id="2_u25hf"]
 [ext_resource type="Texture2D" uid="uid://b77mh1ixvh3uw" path="res://sprites/scenario 24x24.png" id="3_mit85"]
 [ext_resource type="PackedScene" uid="uid://dplf2a21koap7" path="res://NPCMage/mage.tscn" id="5_q35gh"]
@@ -1662,7 +1662,7 @@ layer_4/z_index = 0
 layer_4/tile_data = PackedInt32Array(917530, 655363, 6)
 
 [node name="TimerDay" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 120.0
 one_shot = true
 autostart = true
 

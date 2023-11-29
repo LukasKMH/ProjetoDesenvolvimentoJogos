@@ -19,11 +19,11 @@ func _physics_process(_delta):
 	if dead:
 		return
 	direction = (player.global_position - self.global_position).normalized()
-	change_sprite_direction(direction)
+	change_sprite_direction()
 	velocity = direction * speed
 	move_and_slide()
 
-func change_sprite_direction(direction):
+func change_sprite_direction():
 	if direction.x < 0:
 		sprite.flip_h = true
 	elif direction.x > 0:

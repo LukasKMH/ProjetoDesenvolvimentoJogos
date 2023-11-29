@@ -9,16 +9,22 @@ class_name Player
 @onready var light_node := $PointLight2D
 const BULLET = preload("res://bullet.tscn") 
 
+var is_interacting = false
+
 @export var speed = 30.0
 var life = 3
 var dead = false
 
 func _ready():
+	Events.playerInteractMage.connect(_on_player_interact_mage)
+	Events.close_shop.connect(_on_player_close_mage_shop)
+	Events.playerBuyLife.connect(_on_player_buy_life)
+	Events.playerBuyVelocity.connect(_on_player_buy_velocity)
 	sprite.play()  
 	check_and_execute_scenario_action()
 
 func _physics_process(delta):
-	if dead:
+	if dead or is_interacting:
 		return
 	walk()
 	aim.look_at(get_global_mouse_position())
@@ -84,4 +90,15 @@ func night_action():
 	light_enabled = true
 	light_node.visible = light_enabled
 	shoot_timer.start() 
-	
+
+func _on_player_interact_mage():
+	is_interacting = true
+
+func _on_player_close_mage_shop():
+	is_interacting = false
+
+func _on_player_buy_life():
+	life += 1
+
+func _on_player_buy_velocity():
+	speed += 30
