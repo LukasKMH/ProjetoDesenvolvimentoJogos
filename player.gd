@@ -17,10 +17,10 @@ var dead = false
 
 func _ready():
 	Events.playerInteractMage.connect(_on_player_interact_mage)
-	Events.close_shop.connect(_on_player_close_mage_shop)
+	Events.close_mage_shop.connect(_on_player_close_mage_shop)
 	Events.playerBuyLife.connect(_on_player_buy_life)
 	Events.playerBuyVelocity.connect(_on_player_buy_velocity)
-	sprite.play()  
+	sprite.play()
 	check_and_execute_scenario_action()
 
 func _physics_process(delta):
@@ -71,7 +71,7 @@ func _on_area_2d_body_entered(body):
 		body.knockback(self)
 
 func _on_get_damage_timer_timeout():
-	sprite.modulate = Color(1, 1, 1)  # Reset color
+	sprite.modulate = Color(1, 1, 1)
 	
 func check_and_execute_scenario_action():
 	var light_node = $PointLight2D

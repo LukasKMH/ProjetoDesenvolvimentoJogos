@@ -4,9 +4,9 @@ var interactable = false
 var is_on_shop = false
 
 func _ready():
-	#respawn()
+	respawn()
 	self.visible = false
-	Events.close_shop.connect(_on_player_close_mage_shop)
+	Events.close_mage_shop.connect(_on_player_close_mage_shop)
 
 func _process(delta):
 	if !interactable:
@@ -25,7 +25,7 @@ func respawn():
 	var y = rand.randf_range(40, 416)
 	
 	var player = get_parent().find_child("Player")
-	while player.global_position.distance_to(Vector2(x, y)) < 100.0:
+	while player.global_position.distance_to(Vector2(x, y)) < 50.0:
 		rand.randomize()
 		x = rand.randf_range(32, 704)
 		rand.randomize()

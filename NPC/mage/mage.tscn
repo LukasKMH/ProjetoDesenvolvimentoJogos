@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dplf2a21koap7"]
 
-[ext_resource type="Script" path="res://NPCMage/mage.gd" id="1_ayl77"]
+[ext_resource type="Script" path="res://NPC/mage/mage.gd" id="1_ayl77"]
 [ext_resource type="Texture2D" uid="uid://cmt0shunpmdnx" path="res://sprites/AdeptNecromancerIdle.png" id="1_mk10p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8gpr"]

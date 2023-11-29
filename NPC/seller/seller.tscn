@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmjtpfyxe1kxn"]
+
+[ext_resource type="Texture2D" uid="uid://cqe4t34fck5v7" path="res://sprites/OverworkedVillagerIdleSide.png" id="1_3na8f"]
+[ext_resource type="Script" path="res://NPC/seller/seller.gd" id="1_penbf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oio1h"]
+atlas = ExtResource("1_3na8f")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqtam"]
+atlas = ExtResource("1_3na8f")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocmyn"]
+atlas = ExtResource("1_3na8f")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb7l1"]
+atlas = ExtResource("1_3na8f")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j8e3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oio1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqtam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocmyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb7l1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mjo28"]
+radius = 111.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_804qt"]
+radius = 17.0294
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dj4o"]
+radius = 7.0
+
+[node name="Seller" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 24
+script = ExtResource("1_penbf")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j8e3r")
+autoplay = "default"
+frame_progress = 0.615786
+
+[node name="RunArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="RunCollision" type="CollisionShape2D" parent="RunArea"]
+shape = SubResource("CircleShape2D_mjo28")
+
+[node name="TradeArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="TradeCollision" type="CollisionShape2D" parent="TradeArea"]
+shape = SubResource("CircleShape2D_804qt")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_7dj4o")
+
+[connection signal="body_entered" from="RunArea" to="." method="_on_run_area_body_entered"]
+[connection signal="body_exited" from="RunArea" to="." method="_on_run_area_body_exited"]
+[connection signal="body_entered" from="TradeArea" to="." method="_on_trade_area_body_entered"]
+[connection signal="body_exited" from="TradeArea" to="." method="_on_trade_area_body_exited"]
