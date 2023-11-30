@@ -1613,11 +1613,11 @@ modulate = Color(0.831373, 0.831373, 0.831373, 1)
 y_sort_enabled = true
 script = ExtResource("5_sdxon")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 offset = Vector2(9, 9)
 transform = Transform2D(1, 0, 0, 1, 9, 9)
 
-[node name="HeartContainer" parent="CanvasLayer" instance=ExtResource("1_qxxcj")]
+[node name="HeartContainer" parent="HUD" instance=ExtResource("1_qxxcj")]
 offset_right = 194.0
 offset_bottom = 62.0
 scale = Vector2(0.2, 0.158)
@@ -1667,7 +1667,7 @@ wait_time = 120.0
 one_shot = true
 autostart = true
 
-[node name="mage" parent="." instance=ExtResource("5_q35gh")]
+[node name="Mage" parent="." instance=ExtResource("5_q35gh")]
 position = Vector2(226, 120)
 
 [node name="Seller" parent="." instance=ExtResource("6_oauu7")]

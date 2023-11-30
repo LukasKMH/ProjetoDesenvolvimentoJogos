@@ -12,20 +12,21 @@ func _ready():
 	Events.playerInteractSeller.connect(_on_player_interact_seller)
 
 func _on_player_interact_mage():
-	time_left = timer.time_left
-	timer.stop()
-	
-	var mage_shop_menu = MageShopMenu.instantiate()
-	mage_shop_menu.position = player.position
-	self.add_child(mage_shop_menu)
+	if !player.is_interacting:
+		time_left = timer.time_left
+		timer.stop()
+		var mage_shop_menu = MageShopMenu.instantiate()
+		mage_shop_menu.position = player.position
+		self.add_child(mage_shop_menu)
 
 func _on_mage_close_shop():
 	timer.start(time_left)
 
 func _on_player_interact_seller():
-	var seller_shop_menu = SellerShopMenu.instantiate()
-	seller_shop_menu.position = player.position
-	self.add_child(seller_shop_menu)
+	if !player.is_interacting:
+		var seller_shop_menu = SellerShopMenu.instantiate()
+		seller_shop_menu.position = player.position
+		self.add_child(seller_shop_menu)
 
 func _on_timer_day_timeout():
 	print("ACABOU O TEMPO")

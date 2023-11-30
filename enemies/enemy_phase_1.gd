@@ -29,8 +29,8 @@ func change_sprite_direction():
 	elif direction.x > 0:
 		sprite.flip_h = false
 
-func get_damage():
-	life -= 1
+func get_damage(damage):
+	life -= damage
 	sprite.modulate = Color(1, 0, 0)
 	blood_particles.emitting = true
 	get_damage_timer.start()
@@ -39,10 +39,9 @@ func get_damage():
 		dead = true
 		die()
 
-func knockback(body): #Peguei a função nesse vídeo https://www.youtube.com/watch?v=SNWpFTer-YU&list=PLMQtM2GgbPEVuTgD4Ln17ombTg6EahSLr&index=17
+func knockback(bodyVelocity): #Peguei a função nesse vídeo https://www.youtube.com/watch?v=SNWpFTer-YU&list=PLMQtM2GgbPEVuTgD4Ln17ombTg6EahSLr&index=17
 	var knockback_power = 800
-	var knockback_direction = (body.velocity - self.velocity).normalized() * knockback_power
-	#change_sprite_direction(direction)
+	var knockback_direction = (bodyVelocity - self.velocity).normalized() * knockback_power
 	velocity = knockback_direction
 	move_and_slide()
 

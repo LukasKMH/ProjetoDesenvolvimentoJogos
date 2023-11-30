@@ -7,6 +7,5 @@ signal playerDamaged
 signal playerInteractMage
 signal close_mage_shop
 signal playerBuyLife
-signal playerBuyVelocity
 
 signal playerInteractSeller
