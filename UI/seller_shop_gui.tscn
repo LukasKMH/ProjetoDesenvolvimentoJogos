@@ -61,7 +61,7 @@ text = "Arma 1"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="WeponInfo1" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 text = "Dano: 1
 Tiro/s: 1s
@@ -81,7 +81,7 @@ text = "Arma 2"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
+[node name="WeponInfo2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 text = "Dano: 2
 Tiro/s: 0.5

@@ -16,4 +16,5 @@ func _on_button_buy_life_pressed():
 
 func _on_close_pressed():
 	player.is_interacting = false
+	Events.emit_signal("close_mage_shop")
 	self.queue_free()

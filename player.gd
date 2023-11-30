@@ -18,7 +18,7 @@ func _ready():
 	shoot_timer.wait_time = wepon.shootVelocity
 	
 	sprite.play()
-	check_and_execute_scenario_action()
+	#check_and_execute_scenario_action()
 
 func _physics_process(delta):
 	if dead or is_interacting:
@@ -49,10 +49,10 @@ func shoot():
 func _on_timer_timeout():
 	shoot()
 
-func get_damage():
+func get_damage(damage):
 	if dead:
 		return
-	life -= 1
+	life -= damage
 	sprite.modulate = Color(1, 0, 0)
 	get_damage_timer.start()
 	Events.emit_signal("playerDamaged")
@@ -63,7 +63,7 @@ func get_damage():
 
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
-		self.get_damage()
+		self.get_damage(body.damage)
 		body.knockback(self.velocity)
 
 func _on_get_damage_timer_timeout():

@@ -8,7 +8,8 @@ class_name Enemy
 @onready var collision:= $collision
 
 @export var speed = 25.0
-var direction = 0
+var direction = Vector2(0,0)
+var damage = 1
 var life = 2
 var dead = false
 
