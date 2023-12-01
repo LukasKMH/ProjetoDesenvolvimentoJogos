@@ -1,8 +1,6 @@
 extends Node
 class_name Wepon
 
-const Bullet = preload("res://bullet.tscn") 
-
 var damage: int
 var shootVelocity: float
 var bulletVelocity: float
@@ -12,8 +10,8 @@ func _init(damage, shootVelocity, bulletVelocity):
 	self.shootVelocity = shootVelocity
 	self.bulletVelocity = bulletVelocity
 
-func shoot(bulletPosition, mousePosition):
-	var bullet = Bullet.instantiate()
+func shoot(bulletPosition, mousePosition, bulletType):
+	var bullet = bulletType.instantiate()
 	bullet.damage = damage
 	bullet.speed = bulletVelocity
 	bullet.position = bulletPosition

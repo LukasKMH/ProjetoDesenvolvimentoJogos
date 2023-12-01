@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+const Bullet = preload("res://bullet.tscn") 
+
 @onready var sprite := $sprite
 @onready var shoot_timer := $ShootTimer
 @onready var get_damage_timer := $GetDamageTimer
@@ -42,7 +44,7 @@ func shoot():
 		return
 	
 	var bulletSpawnPosition = $aim/position.global_position
-	var bullet = wepon.shoot(bulletSpawnPosition,get_global_mouse_position())
+	var bullet = wepon.shoot(bulletSpawnPosition,get_global_mouse_position(), Bullet)
 	get_parent().add_child(bullet)
 
 func _on_timer_timeout():

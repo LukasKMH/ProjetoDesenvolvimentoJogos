@@ -87,8 +87,9 @@ var rand = RandomNumberGenerator.new()
 var mediumEnemyLoad = load("res://enemies/MediumEnemy.tscn")
 var speedEnemyLoad = load("res://enemies/SpeedEnemy.tscn")
 var lifeEnemyLoad = load("res://enemies/LifeEnemy.tscn")
+var shootEnemyLoad = load("res://enemies/ShootEnemy.tscn")
 var MiniBossEnemyLoad = load("res://enemies/MiniBossEnemy.tscn")
-var enemies = [mediumEnemyLoad, speedEnemyLoad, lifeEnemyLoad]
+var enemies = [mediumEnemyLoad, speedEnemyLoad, lifeEnemyLoad, shootEnemyLoad]
 
 func startNight():
 	self.modulate = Color(0.2,0.2,0.2)
