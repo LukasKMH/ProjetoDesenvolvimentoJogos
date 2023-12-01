@@ -5,6 +5,7 @@ class_name SellerShop
 @onready var weponInfo2 = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2/WeponInfo2
 
 var player
+var seller
 
 var wepon1
 var wepon2
@@ -35,4 +36,5 @@ func _on_button_buy_wepon_1_pressed():
 
 func _on_close_pressed():
 	player.is_interacting = false
+	seller.respawn()
 	self.queue_free()

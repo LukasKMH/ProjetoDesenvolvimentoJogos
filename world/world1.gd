@@ -42,7 +42,7 @@ var seller
 
 func startDay():
 	self.modulate = Color(1,1,1)
-	$TimerDay.start(15)
+	$TimerDay.start(25)
 	player.day_action()
 	loadMage()
 	loadSeller()
@@ -78,6 +78,7 @@ func _on_mage_close_shop():
 func _on_player_interact_seller():
 	if !player.is_interacting:
 		seller_shop_menu = SellerShopMenu.instantiate()
+		seller_shop_menu.seller = seller
 		seller_shop_menu.position = player.position
 		self.add_child(seller_shop_menu)
 

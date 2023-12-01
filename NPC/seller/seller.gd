@@ -41,7 +41,8 @@ func _on_trade_area_body_entered(body):
 	state = SELL
 
 func _on_trade_area_body_exited(body):
-	state = RUN
+	if state != IDLE:
+		state = RUN
 
 func respawn():
 	var rand = RandomNumberGenerator.new()
@@ -61,6 +62,7 @@ func respawn():
 	
 	self.position.x = x
 	self.position.y = y
+	state = IDLE
 
 func change_sprite_direction(direction):
 	if direction.x < 0:
