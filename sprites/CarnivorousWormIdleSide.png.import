@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4wt3886m3kg7"
-path="res://.godot/imported/OverworkedVillagerIdleSide.png-ab14ad6fd2f95705d8f61003500e72b5.ctex"
+uid="uid://cagldho2l2pb7"
+path="res://.godot/imported/CarnivorousWormIdleSide.png-8b7570d5f17bb166d3cb6977ff0442d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://NPC/seller/OverworkedVillagerIdleSide.png"
-dest_files=["res://.godot/imported/OverworkedVillagerIdleSide.png-ab14ad6fd2f95705d8f61003500e72b5.ctex"]
+source_file="res://sprites/CarnivorousWormIdleSide.png"
+dest_files=["res://.godot/imported/CarnivorousWormIdleSide.png-8b7570d5f17bb166d3cb6977ff0442d4.ctex"]
 
 [params]
 

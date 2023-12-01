@@ -22,6 +22,7 @@ func _day_end():
 
 func _night_end():
 	$TimerNight.stop()
+	$SpawnTimer.stop()
 	worldState = DAY
 	removeNightElements()
 	startDay()
@@ -41,7 +42,7 @@ var seller
 
 func startDay():
 	self.modulate = Color(1,1,1)
-	$TimerDay.start(30)
+	$TimerDay.start(15)
 	player.day_action()
 	loadMage()
 	loadSeller()
@@ -83,26 +84,34 @@ func _on_player_interact_seller():
 # Night Logic
 
 var rand = RandomNumberGenerator.new()
-var enemyscene = load("res://enemies/enemy_phase_1.tscn")
+var mediumEnemyLoad = load("res://enemies/MediumEnemy.tscn")
+var speedEnemyLoad = load("res://enemies/SpeedEnemy.tscn")
+var lifeEnemyLoad = load("res://enemies/LifeEnemy.tscn")
+var MiniBossEnemyLoad = load("res://enemies/MiniBossEnemy.tscn")
+var enemies = [mediumEnemyLoad, speedEnemyLoad, lifeEnemyLoad]
 
 func startNight():
-	self.modulate = Color(0.25,0.25,0.25)
+	self.modulate = Color(0.2,0.2,0.2)
 	$TimerNight.start(160)
+	$SpawnTimer.start(1)
 	player.night_action()
-	spawnEnemies(20)
+	spawnInitialEnemies(5)
 
-func spawnEnemies(numberOfEnemies):
+func spawnInitialEnemies(numberOfEnemies):
 	for i in range (0,numberOfEnemies):
-		respawn_enemy()
+		var index = randi_range(0,enemies.size() - 1)
+		respawn_enemy(enemies[index])
+	
+	respawn_enemy(MiniBossEnemyLoad)
 
-func respawn_enemy():
-	var enemy = enemyscene.instantiate()
+func respawn_enemy(enemyLoad):
+	var enemy = enemyLoad.instantiate()
 	rand.randomize()
 	var x = rand.randf_range(32, 704)
 	rand.randomize()
 	var y = rand.randf_range(40, 416)
 	
-	while player.global_position.distance_to(Vector2(x, y)) < 100.0:
+	while player.global_position.distance_to(Vector2(x, y)) < 85.0:
 		rand.randomize()
 		x = rand.randf_range(32, 704)
 		rand.randomize()
@@ -116,7 +125,18 @@ func respawn_enemy():
 	$Enemies.add_child(enemy)
 
 func _on_enemy_died():
-	respawn_enemy()
+	#TODO: add_coin()
+	pass
+
+var count = 0
+func _on_spawn_timer_timeout():
+	
+	var index = randi_range(0,enemies.size() - 1)
+	respawn_enemy(enemies[index])
+	
+	count += 1
+	if count % 15 == 0:
+		respawn_enemy(MiniBossEnemyLoad)
 
 func removeNightElements():
 	for enemy in $Enemies.get_children():

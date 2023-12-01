@@ -16,10 +16,11 @@ func setHearts():
 		hearts.append(heart)
 		add_child(heart)
 
-func removeHeart():
-	if hearts.size() > 0:
-		var heart = hearts.pop_back()
-		heart.queue_free()
+func removeHeart(damage):
+	for i in range(damage):
+		if hearts.size() > 0:
+			var heart = hearts.pop_back()
+			heart.queue_free()
 
 func addHeart():
 	var heart = HeartGUI.instantiate()

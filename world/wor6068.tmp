@@ -1664,10 +1664,7 @@ position = Vector2(344, 224)
 
 [node name="TimerNight" type="Timer" parent="."]
 
-[node name="SpawnTimer" type="Timer" parent="."]
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [connection signal="timeout" from="TimerDay" to="." method="_day_end"]
 [connection signal="timeout" from="TimerNight" to="." method="_night_end"]
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

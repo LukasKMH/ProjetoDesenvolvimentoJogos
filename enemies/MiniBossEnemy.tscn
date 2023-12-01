@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=3 uid="uid://1pwdo13lxo05"]
+
+[ext_resource type="Texture2D" uid="uid://cagldho2l2pb7" path="res://sprites/CarnivorousWormIdleSide.png" id="1_c81hh"]
+[ext_resource type="Script" path="res://enemies/MiniBossEnemy.gd" id="1_p7csr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnsdx"]
+atlas = ExtResource("1_c81hh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtgk3"]
+atlas = ExtResource("1_c81hh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns3jn"]
+atlas = ExtResource("1_c81hh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qweuy"]
+atlas = ExtResource("1_c81hh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leqo8"]
+atlas = ExtResource("1_c81hh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8gfp"]
+atlas = ExtResource("1_c81hh")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtc5i"]
+atlas = ExtResource("1_c81hh")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_611uj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnsdx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtgk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ns3jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qweuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leqo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8gfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtc5i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sgnbh"]
+radius = 14.0
+height = 32.0
+
+[sub_resource type="Gradient" id="Gradient_dl8d2"]
+offsets = PackedFloat32Array(0, 0.177778, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.744618, 0.655534, 0.392593, 1, 0.579554, 0.432892, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rtdq7"]
+gradient = SubResource("Gradient_dl8d2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jo5v6"]
+emission_shape = 1
+emission_sphere_radius = 10.88
+particle_flag_disable_z = true
+direction = Vector3(5, 1, 0)
+spread = 110.62
+gravity = Vector3(0, -20, 0)
+initial_velocity_max = 3.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 3.0
+scale_max = 6.0
+color = Color(0.870588, 0.215686, 0.180392, 1)
+color_ramp = SubResource("GradientTexture1D_rtdq7")
+
+[node name="MiniBossEnemy" type="CharacterBody2D"]
+position = Vector2(75, 25)
+collision_layer = 5
+collision_mask = 30
+script = ExtResource("1_p7csr")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_611uj")
+autoplay = "default"
+frame = 2
+frame_progress = 0.235177
+offset = Vector2(1, 0)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_sgnbh")
+
+[node name="GetDamageTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="BloodParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_jo5v6")
+
+[connection signal="timeout" from="GetDamageTimer" to="." method="_on_get_damage_timer_timeout"]

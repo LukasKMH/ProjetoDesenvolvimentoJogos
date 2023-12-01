@@ -10,7 +10,7 @@ class_name Player
 var is_interacting = false
 var dead = false
 
-var speed = 100.0
+var speed = 90.0
 var life = 3
 var wepon = Wepon.new(1, 1, 200) # Damage, time_to_shoot, bullet_velocity
 
@@ -18,7 +18,6 @@ func _ready():
 	shoot_timer.wait_time = wepon.shootVelocity
 	
 	sprite.play()
-	#check_and_execute_scenario_action()
 
 func _physics_process(delta):
 	if dead or is_interacting:
@@ -55,7 +54,7 @@ func get_damage(damage):
 	life -= damage
 	sprite.modulate = Color(1, 0, 0)
 	get_damage_timer.start()
-	Events.emit_signal("playerDamaged")
+	Events.emit_signal("playerDamaged", damage)
 	
 	if life <= 0:
 		dead = true
@@ -68,13 +67,6 @@ func _on_area_2d_body_entered(body):
 
 func _on_get_damage_timer_timeout():
 	sprite.modulate = Color(1, 1, 1)
-	
-func check_and_execute_scenario_action():
-	var current_scenario = get_tree().current_scene.get_name()
-	if current_scenario.find("world_day") != -1:
-		day_action()
-	else:
-		night_action()
 
 func day_action():
 	light_node.visible = false
@@ -83,3 +75,7 @@ func day_action():
 func night_action():
 	light_node.visible = true
 	shoot_timer.start() 
+
+func change_wepon(new_wepon):
+	self.wepon = new_wepon
+	self.shoot_timer.wait_time = new_wepon.shootVelocity

@@ -7,11 +7,17 @@ class_name Enemy
 @onready var blood_particles:= $BloodParticles
 @onready var collision:= $collision
 
-@export var speed = 25.0
 var direction = Vector2(0,0)
-var damage = 1
-var life = 2
 var dead = false
+
+var speed
+var damage
+var life
+
+func init(speed, damage, life):
+	self.speed = speed
+	self.damage = damage
+	self.life = life
 
 func _ready():
 	blood_particles.emitting = false

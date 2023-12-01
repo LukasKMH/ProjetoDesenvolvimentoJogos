@@ -5,7 +5,7 @@ var player
 enum {IDLE, RUN, SELL}
 var state
 
-const SPEED = 25.0
+const SPEED = 45.0
 
 func _ready():
 	respawn()

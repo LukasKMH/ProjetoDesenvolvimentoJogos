@@ -1,38 +1,38 @@
-[gd_scene load_steps=12 format=3 uid="uid://bw4oq4g4n2f83"]
+[gd_scene load_steps=12 format=3 uid="uid://cwjn17jsegovd"]
 
-[ext_resource type="Script" path="res://enemies/enemy_phase_1.gd" id="1_fjdf8"]
-[ext_resource type="Texture2D" uid="uid://ctkubmj4crgu" path="res://sprites/enemy1_sprite.png" id="1_so0pt"]
+[ext_resource type="Script" path="res://enemies/SpeedEnemy.gd" id="1_ho0om"]
+[ext_resource type="Texture2D" uid="uid://brhm121qwfh70" path="res://sprites/GiantRatIdleSide.png" id="2_xb5tc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nqp6l"]
-atlas = ExtResource("1_so0pt")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhk70"]
+atlas = ExtResource("2_xb5tc")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b7ydi"]
-atlas = ExtResource("1_so0pt")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsqfx"]
+atlas = ExtResource("2_xb5tc")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ufl7"]
-atlas = ExtResource("1_so0pt")
+[sub_resource type="AtlasTexture" id="AtlasTexture_p10rw"]
+atlas = ExtResource("2_xb5tc")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wu14o"]
-atlas = ExtResource("1_so0pt")
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqc20"]
+atlas = ExtResource("2_xb5tc")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_611uj"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_rlsgb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nqp6l")
+"texture": SubResource("AtlasTexture_bhk70")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b7ydi")
+"texture": SubResource("AtlasTexture_tsqfx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1ufl7")
+"texture": SubResource("AtlasTexture_p10rw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wu14o")
+"texture": SubResource("AtlasTexture_yqc20")
 }],
 "loop": true,
 "name": &"default",
@@ -41,7 +41,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sgnbh"]
 radius = 6.0
-height = 16.0
+height = 12.0
 
 [sub_resource type="Gradient" id="Gradient_dl8d2"]
 offsets = PackedFloat32Array(0, 0.177778, 1)
@@ -65,27 +65,29 @@ scale_max = 6.0
 color = Color(0.870588, 0.215686, 0.180392, 1)
 color_ramp = SubResource("GradientTexture1D_rtdq7")
 
-[node name="enemy_phase_1" type="CharacterBody2D"]
+[node name="SpeedEnemy" type="CharacterBody2D"]
 position = Vector2(75, 25)
 collision_layer = 5
 collision_mask = 30
-script = ExtResource("1_fjdf8")
+script = ExtResource("1_ho0om")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 z_index = -1
-sprite_frames = SubResource("SpriteFrames_611uj")
+position = Vector2(3, 2)
+sprite_frames = SubResource("SpriteFrames_rlsgb")
 autoplay = "default"
-frame_progress = 0.108298
-offset = Vector2(1, 0)
+frame = 3
+frame_progress = 0.968159
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
+position = Vector2(3, 4)
 shape = SubResource("CapsuleShape2D_sgnbh")
 
 [node name="GetDamageTimer" type="Timer" parent="."]
 wait_time = 0.3
 
 [node name="BloodParticles" type="GPUParticles2D" parent="."]
+position = Vector2(3, 2)
 emitting = false
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_jo5v6")

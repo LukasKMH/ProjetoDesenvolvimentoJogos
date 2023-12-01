@@ -21,6 +21,7 @@ Events="*res://Events.gd"
 
 [display]
 
+window/size/mode=3
 window/stretch/scale=2.58
 
 [input]
