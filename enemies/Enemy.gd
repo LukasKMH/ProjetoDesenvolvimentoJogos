@@ -59,3 +59,22 @@ func die():
 func _on_get_damage_timer_timeout():
 	blood_particles.emitting = false
 	sprite.modulate = Color(1, 1, 1) #reset color
+
+func _on_area_2d_body_entered(body):
+	self.respawn()
+
+var rand = RandomNumberGenerator.new()
+func respawn():
+	rand.randomize()
+	var x = rand.randf_range(32, 704)
+	rand.randomize()
+	var y = rand.randf_range(40, 416)
+	
+	while player.global_position.distance_to(Vector2(x, y)) < 85.0:
+		rand.randomize()
+		x = rand.randf_range(32, 704)
+		rand.randomize()
+		y = rand.randf_range(40, 416)
+	
+	self.position.x = x
+	self.position.y = y

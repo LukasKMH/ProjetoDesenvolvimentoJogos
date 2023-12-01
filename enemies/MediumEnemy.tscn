@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bw4oq4g4n2f83"]
+[gd_scene load_steps=13 format=3 uid="uid://bw4oq4g4n2f83"]
 
 [ext_resource type="Script" path="res://enemies/MediumEnemy.gd" id="1_iqejb"]
 [ext_resource type="Texture2D" uid="uid://ctkubmj4crgu" path="res://sprites/enemy1_sprite.png" id="2_j0nhv"]
@@ -65,6 +65,10 @@ scale_max = 6.0
 color = Color(0.870588, 0.215686, 0.180392, 1)
 color_ramp = SubResource("GradientTexture1D_rtdq7")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lqh4x"]
+radius = 5.0
+height = 14.0
+
 [node name="MediumEnemy" type="CharacterBody2D"]
 position = Vector2(75, 25)
 collision_layer = 5
@@ -90,4 +94,13 @@ emitting = false
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_jo5v6")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_lqh4x")
+
 [connection signal="timeout" from="GetDamageTimer" to="." method="_on_get_damage_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

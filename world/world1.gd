@@ -42,7 +42,7 @@ var seller
 
 func startDay():
 	self.modulate = Color(1,1,1)
-	$TimerDay.start(25)
+	$TimerDay.start(30)
 	player.day_action()
 	loadMage()
 	loadSeller()
@@ -97,7 +97,7 @@ func startNight():
 	$TimerNight.start(160)
 	$SpawnTimer.start(1)
 	player.night_action()
-	spawnInitialEnemies(5)
+	spawnInitialEnemies(10)
 
 func spawnInitialEnemies(numberOfEnemies):
 	for i in range (0,numberOfEnemies):
